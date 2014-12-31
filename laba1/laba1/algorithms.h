@@ -14,11 +14,11 @@
 #define KEY_NOT_FOUND -1;
 
 typedef struct {
-    void (* const BubbleSort)(int *array, int array_size);
-    void (* const QuickSort)(int *arr, int elements);
-    void (* const PermutationSort)(int *arr, int elements);
-    int (* const DirectSearch)(int search, int *arr, int elements);
-    int (* const BinarySearch)(int search, int *arr, int elements);
+    uint64_t (* const BubbleSort)(short int *array, int array_size);
+    uint64_t (* const QuickSort)(short int *arr, int elements);
+    uint64_t (* const PermutationSort)(short int *arr, int elements);
+    uint64_t (* const DirectSearch)(short int search, short int *arr, int elements);
+    uint64_t (* const BinarySearch)(short int search, short int *arr, int elements);
 } namespace_algorithms;
 
 extern namespace_algorithms const algorithms;

@@ -8,33 +8,30 @@
 
 #include "file.h"
 
-short int getRand(void)
+float getRand(void)
 {
-    short int min = -20000;
-    short int max = 32000;
-    return (short int) min + (rand() % (int)(max - min + 1));
+    return ((float) rand() / (RAND_MAX));
 }
 
 static void write_random_file(const char * name, int count) {
-    FILE *fd = fopen(name, "w+");
+    FILE *fd = fopen(name, "a+");
     if(fd) {
         for(int i = 0; i < count; i++) {
-            fprintf(fd, "%hd\n", getRand());
+            fprintf(fd, "%f %f\n", getRand(), getRand());
         }
         fclose(fd);
     }
 }
 
-static void read_file(const char * name, short int *array, int count) {
+static void read_file(const char * name, struct lPoint *array, int count) {
     FILE *fp = fopen(name, "r");
     if(fp) {
-        short int buf = 0;
+        float buf_x = 0;
+        float buf_y = 0;
         for (int i = 0; i < count; i++) {
-            fscanf(fp, "%hd", &buf);
-            if (buf < -20000 || buf > 32000) {
-                exit(0);
-            }
-            array[i] = buf;
+            fscanf(fp, "%f %f", &buf_x, &buf_y);
+            array[i].x = buf_x;
+            array[i].y = buf_y;
         }
         fclose(fp);
     }
